@@ -1,1 +1,1 @@
-# KanNavBarPlugin
+# JrusalemNavigationBarPlugin
