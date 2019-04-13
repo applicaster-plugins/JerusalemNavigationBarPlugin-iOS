@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment version="2304" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="JerusalemNavigationBarUIBuilderView" customModule="JerusalemNavigationBarPlugin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cni-aF-wFX" userLabel="Background Image View" customClass="ZPImageView" customModule="ZappPlugins">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="7eI-Y9-Zc2">
+                    <rect key="frame" x="5" y="0.0" width="310" height="44"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KNC-sx-81F" userLabel="SpecialContainer">
+                            <rect key="frame" x="0.0" y="0.0" width="38" height="44"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8rg-xD-65R">
+                                    <rect key="frame" x="0.0" y="0.0" width="38" height="44"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="38" id="th9-Ed-TWe"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z72-bE-jRU" userLabel="Back Button" customClass="NavigationButton" customModule="ZappNavigationBarPluginsSDK">
+                                    <rect key="frame" x="0.0" y="0.0" width="38" height="44"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="38" id="WDF-Hp-F56"/>
+                                    </constraints>
+                                    <connections>
+                                        <action selector="handleUserBackButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="m8Q-Mi-7s0"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUe-m6-Q9r" userLabel="Special Button" customClass="NavigationButton" customModule="ZappNavigationBarPluginsSDK">
+                                    <rect key="frame" x="0.0" y="0.0" width="38" height="44"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="38" id="cmx-4C-PLd"/>
+                                    </constraints>
+                                    <connections>
+                                        <action selector="handleUserPushSpecialButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="QGB-V4-fam"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ay9-Q2-xvn" userLabel="Close Button" customClass="NavigationButton" customModule="ZappNavigationBarPluginsSDK">
+                                    <rect key="frame" x="0.0" y="0.0" width="38" height="44"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="38" id="ZrQ-uU-nZp"/>
+                                    </constraints>
+                                    <connections>
+                                        <action selector="handleUserPushCloseButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="jAs-lT-SRF"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="8rg-xD-65R" firstAttribute="top" secondItem="KNC-sx-81F" secondAttribute="top" id="2OJ-Mg-7Ta"/>
+                                <constraint firstItem="8rg-xD-65R" firstAttribute="leading" secondItem="KNC-sx-81F" secondAttribute="leading" id="54x-rH-5Va"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="38" id="7eU-3Z-8Id"/>
+                                <constraint firstAttribute="bottom" secondItem="z72-bE-jRU" secondAttribute="bottom" id="FRZ-1a-ARR"/>
+                                <constraint firstItem="DUe-m6-Q9r" firstAttribute="top" secondItem="KNC-sx-81F" secondAttribute="top" id="K53-Vh-PHa"/>
+                                <constraint firstItem="z72-bE-jRU" firstAttribute="leading" secondItem="KNC-sx-81F" secondAttribute="leading" id="L5x-mg-PJU"/>
+                                <constraint firstItem="DUe-m6-Q9r" firstAttribute="leading" secondItem="KNC-sx-81F" secondAttribute="leading" id="MVK-Wm-165"/>
+                                <constraint firstAttribute="bottom" secondItem="ay9-Q2-xvn" secondAttribute="bottom" id="WOi-jV-AM6"/>
+                                <constraint firstItem="ay9-Q2-xvn" firstAttribute="leading" secondItem="KNC-sx-81F" secondAttribute="leading" id="fWt-mw-1T2"/>
+                                <constraint firstItem="ay9-Q2-xvn" firstAttribute="top" secondItem="KNC-sx-81F" secondAttribute="top" id="ipA-ZL-QxF"/>
+                                <constraint firstAttribute="bottom" secondItem="8rg-xD-65R" secondAttribute="bottom" id="rbL-Fc-N7e"/>
+                                <constraint firstAttribute="bottom" secondItem="DUe-m6-Q9r" secondAttribute="bottom" id="vqJ-hB-a1G"/>
+                                <constraint firstItem="z72-bE-jRU" firstAttribute="top" secondItem="KNC-sx-81F" secondAttribute="top" id="ybz-mR-x3R"/>
+                            </constraints>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UBn-l7-5u5">
+                            <rect key="frame" x="39" y="0.0" width="38" height="44"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uAy-yK-aSL">
+                                    <rect key="frame" x="0.0" y="0.0" width="38" height="44"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="38" id="Mko-pU-dUT"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                        </stackView>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="maf-h9-sby" userLabel="Title/LogoContainer">
+                            <rect key="frame" x="78" y="0.0" width="232" height="44"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xG-yr-LFk" userLabel="homeButton" customClass="NavigationButton" customModule="JerusalemNavigationBarPlugin" customModuleProvider="target">
+                                    <rect key="frame" x="202" y="0.0" width="30" height="44"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <connections>
+                                        <action selector="handleUserHomeButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="g75-hX-1T3"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUj-fh-5Iz" userLabel="Title Label">
+                                    <rect key="frame" x="0.0" y="0.0" width="197" height="44"/>
+                                    <color key="backgroundColor" red="0.89274534670000005" green="0.38108111109999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" id="N4p-g7-TXd"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EnE-md-0Ij" userLabel="Logo Image View" customClass="ZPImageView" customModule="ZappPlugins">
+                                    <rect key="frame" x="202" y="0.0" width="30" height="44"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" id="pc0-HA-9L1"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="qUj-fh-5Iz" secondAttribute="bottom" id="8aP-E2-v0Y"/>
+                                <constraint firstItem="8xG-yr-LFk" firstAttribute="width" secondItem="EnE-md-0Ij" secondAttribute="width" id="9yZ-fh-EJy"/>
+                                <constraint firstItem="8xG-yr-LFk" firstAttribute="height" secondItem="EnE-md-0Ij" secondAttribute="height" id="BdS-La-n11"/>
+                                <constraint firstItem="EnE-md-0Ij" firstAttribute="leading" secondItem="qUj-fh-5Iz" secondAttribute="trailing" constant="5" id="JaI-Hs-M91"/>
+                                <constraint firstItem="8xG-yr-LFk" firstAttribute="centerY" secondItem="EnE-md-0Ij" secondAttribute="centerY" id="KTP-H8-0ge"/>
+                                <constraint firstItem="qUj-fh-5Iz" firstAttribute="top" secondItem="maf-h9-sby" secondAttribute="top" id="T9Q-4B-zpb"/>
+                                <constraint firstAttribute="bottom" secondItem="EnE-md-0Ij" secondAttribute="bottom" id="UYA-6T-6ue"/>
+                                <constraint firstAttribute="trailing" secondItem="EnE-md-0Ij" secondAttribute="trailing" id="bSs-Te-O5V"/>
+                                <constraint firstItem="EnE-md-0Ij" firstAttribute="top" secondItem="maf-h9-sby" secondAttribute="top" id="ceR-dW-bfx"/>
+                                <constraint firstItem="qUj-fh-5Iz" firstAttribute="leading" secondItem="maf-h9-sby" secondAttribute="leading" id="fBv-SN-aJt"/>
+                                <constraint firstItem="8xG-yr-LFk" firstAttribute="centerX" secondItem="EnE-md-0Ij" secondAttribute="centerX" id="tPK-Up-2Wk"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="Rsd-P5-C1Y"/>
+                        <constraint firstItem="UBn-l7-5u5" firstAttribute="width" secondItem="KNC-sx-81F" secondAttribute="width" id="bsc-6T-ql8"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="0.1333333333" green="0.75294117650000003" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="cni-aF-wFX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="1Me-Mb-4hE"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="7eI-Y9-Zc2" secondAttribute="trailing" constant="5" id="RwM-Ac-mea"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="cni-aF-wFX" secondAttribute="trailing" id="WCc-ey-Sc6"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="7eI-Y9-Zc2" secondAttribute="bottom" id="ew6-eP-k64"/>
+                <constraint firstItem="7eI-Y9-Zc2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="rvC-00-ZSa"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="cni-aF-wFX" secondAttribute="bottom" id="w6M-BE-kCW"/>
+                <constraint firstItem="cni-aF-wFX" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="yrp-UM-kxy"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="rightNavButtonLimitIPhone">
+                    <integer key="value" value="3"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="rightNavButtonLimitIPad">
+                    <integer key="value" value="3"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="backButton" destination="z72-bE-jRU" id="1hW-ts-JER"/>
+                <outlet property="backgroundImageView" destination="cni-aF-wFX" id="Dnh-ql-eEU"/>
+                <outlet property="closeButton" destination="ay9-Q2-xvn" id="IYm-r9-d67"/>
+                <outlet property="homeButton" destination="8xG-yr-LFk" id="6ZF-Rt-xhB"/>
+                <outlet property="logoImageView" destination="EnE-md-0Ij" id="h8G-Vo-5Xm"/>
+                <outlet property="mainStackView" destination="7eI-Y9-Zc2" id="Jde-w3-fMH"/>
+                <outlet property="rightButtonDummyView" destination="uAy-yK-aSL" id="V1S-AQ-T2d"/>
+                <outlet property="rightButtonsStackView" destination="UBn-l7-5u5" id="gJv-if-1CB"/>
+                <outlet property="specialButton" destination="DUe-m6-Q9r" id="2ED-B5-psG"/>
+                <outlet property="specialButtonsContainer" destination="KNC-sx-81F" id="mrj-nl-Vb2"/>
+                <outlet property="specialContainerDummyView" destination="8rg-xD-65R" id="FHg-rG-qhB"/>
+                <outlet property="titleLabel" destination="qUj-fh-5Iz" id="dpD-zf-z1S"/>
+            </connections>
+        </view>
+    </objects>
+</document>

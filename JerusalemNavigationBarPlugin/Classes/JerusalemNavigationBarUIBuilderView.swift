@@ -1,0 +1,173 @@
+//
+//  NavigationBarUIBuilderView.swift
+//  Zapp-App
+//
+//  Created by Anton Kononenko on 15/12/2017.
+//  Copyright © 2017 Applicaster LTD. All rights reserved.
+//
+
+import Foundation
+import ZappPlugins
+import ZappNavigationBarPluginsSDK
+import ApplicasterSDK
+import ZappSDK
+
+public class JerusalemNavigationBarUIBuilderView: UIView, ZPNavigationBarUIBuilderProtocol {
+    
+    public struct AnimationKeys {
+        static let animationDurationForMakeButtonsVisible = 0.4
+        static let animationDurationForMakeButtonsHidden  = 0.2
+        static let animationDurationForMakeTitleHidden    = 0.2
+        static let hideSpecialContainer                   = 0.2
+    }
+    
+    public let navigationButtonsWidth:CGFloat    = 38.0
+
+    public weak var delegate: ZPNavigationBarViewDelegate?
+    @IBOutlet weak var mainStackView: UIStackView!
+
+    @IBOutlet open weak var specialButton: NavigationButton?
+    @IBOutlet open weak var backButton: NavigationButton?
+    @IBOutlet open weak var closeButton: NavigationButton?
+
+    @IBOutlet open weak var homeButton: NavigationButton?
+    @IBOutlet open weak var specialButtonsContainer: UIView!
+    @IBOutlet weak var specialContainerDummyView:UIView?
+    
+    @IBOutlet open weak var rightButtonsStackView:UIStackView?
+    @IBOutlet weak var rightButtonDummyView:UIView?
+    
+    @IBInspectable var rightNavButtonLimitIPhone: Int = 3
+    @IBInspectable var rightNavButtonLimitIPad  : Int = 3
+  
+    var rightNavButtonsLimit:Int {
+        return UIScreen.main.traitCollection.userInterfaceIdiom == .phone ? rightNavButtonLimitIPhone : rightNavButtonLimitIPad
+    }
+    
+    @IBOutlet open weak var logoImageView: ZPImageView?
+    @IBOutlet open var backgroundImageView: ZPImageView?
+    
+    @IBOutlet  open var titleLabel: UILabel?
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    override public func awakeFromNib() {
+        if let rightButtonDummyView = rightButtonDummyView {
+            rightButtonDummyView.isHidden = false
+        } else {
+            rightButtonsStackView?.isHidden = true
+        }
+        
+    }
+    
+    open var rightMenuButtons : [NavigationButton] = []
+        {
+        didSet {
+            if let rightButtonsStackView = rightButtonsStackView {
+                func prepareButtonsForUse() {
+                    self.rightButtonDummyView?.isHidden = true
+
+                    if self.rightMenuButtons.count > 0 {
+                        self.rightMenuButtons.enumerated().forEach({ [weak self] (index, navigationButton) in
+                            if let weakSelf = self {
+                                if weakSelf.rightNavButtonsLimit > index {
+                                    navigationButton.addTarget(weakSelf,
+                                                               action: #selector(weakSelf.handleUserPushGroupButtons(_:)),
+                                                               for: .touchUpInside)
+                                    navigationButton.removeConstraints(navigationButton.constraints)
+                                    navigationButton.widthAnchor.constraint(equalToConstant: weakSelf.navigationButtonsWidth).isActive = true
+                                    rightButtonsStackView.addArrangedSubview(navigationButton)
+                                }
+                            }
+                        })
+                        if rightButtonsStackView.subviews.count > 0 {
+                            self.rightButtonsStackView?.isHidden = false
+                        }
+                    } else {
+                        self.rightButtonDummyView?.isHidden = false
+                    }
+                }
+                
+                
+                if oldValue != rightMenuButtons {
+                    if rightButtonsStackView.arrangedSubviews.count > 0 {
+                        rightButtonsStackView.arrangedSubviews.forEach {(subview) in
+                            if let button = subview as? NavigationButton {
+                                button.removeFromSuperview()
+                            }
+                        }
+                    }
+                     prepareButtonsForUse()
+                }
+            }
+        }
+    }
+    
+    public func updateSpecialButtonsContainer(backButtonHidden:Bool,
+                                       specialButtonHidden:Bool,
+                                       closeButtonHidden:Bool) {
+        backButton?.isHidden = backButtonHidden
+        specialButton?.isHidden = specialButtonHidden
+        closeButton?.isHidden = closeButtonHidden
+        let allButtonsHidden = backButtonHidden == true && specialButtonHidden == true && closeButtonHidden == true
+        let specialButtonContainerIsHidden = allButtonsHidden && specialContainerDummyView == nil
+        specialContainerDummyView?.isHidden = !allButtonsHidden
+        if self.specialButtonsContainer.isHidden != specialButtonContainerIsHidden {
+            UIView.animate(withDuration: AnimationKeys.hideSpecialContainer) { [weak self] in
+                self?.specialButtonsContainer.isHidden = specialButtonContainerIsHidden
+            }
+        }
+    }
+
+    open func resetNavBar(_ buttonsCollection:[NavigationButton]) {
+        buttonsCollection.forEach { (button) in
+            button.setImage(nil, for: .normal)
+            button.setImage(nil, for: .highlighted)
+            button.setImage(nil, for: .selected)
+            button.setImage(nil, for: .disabled)
+            button.isHidden = true
+        }
+    }
+    
+    //MARK: Actions
+    @IBAction open func handleUserPushCloseButton(_ sender: NavigationButton) {
+        delegate?.navigationBar(self, buttonWasClicked: .close, senderButton: sender)
+    }
+    
+    @IBAction open func handleUserPushSpecialButton(_ sender: NavigationButton) {
+        delegate?.navigationBar(self, buttonWasClicked: .special, senderButton: sender)
+    }
+    
+    @IBAction open func handleUserBackButton(_ sender: NavigationButton) {
+        delegate?.navigationBar(self, buttonWasClicked: .back, senderButton: sender)
+    }
+    
+    @IBAction open func handleUserHomeButton(_ sender: NavigationButton) {
+        delegate?.navigationBar(self, buttonWasClicked: .returnToHome, senderButton: sender)
+    }
+    
+    @objc open func handleUserPushGroupButtons(_ sender: NavigationButton) {
+        if self.buttonInGroupOfButtons(sender, inButtonsGroup: self.rightMenuButtons) == true {
+            delegate?.navigationBar(self, buttonWasClicked: .rightGroup, senderButton: sender)
+        }
+    }
+     
+    //MARK: Helpers
+    
+    func buttonInGroupOfButtons(_ button:NavigationButton, inButtonsGroup buttonsGroup:[NavigationButton]?) -> Bool {
+        var retVal = false
+        if let unwrappedButtonsGroup = buttonsGroup {
+            for currentButton in unwrappedButtonsGroup {
+                if button == currentButton {
+                    retVal = true
+                    break
+                }
+            }
+        }
+        return retVal
+    }
+}
+
+
