@@ -1,1 +1,1 @@
-# JerusalemNavigationBarPlugin
+# KanNavigationBarPlugin

@@ -1,8 +1,8 @@
 //
-//  GANavigationBarAnalyticsHelper.swift
+//  KanNavigationBarAnalyticsHelper.swift
 //  Zapp-App
 //
-//  Created by Anton Kononenko on 05/03/2018.
+//  Created by Miri on 15/04/2019.
 //  Copyright © 2018 Applicaster LTD. All rights reserved.
 //
 
@@ -12,7 +12,7 @@ import ZappRootPluginsSDK
 import ApplicasterSDK
 import ZappSDK
 
-class JerusalemNavigationBarAnalyticsHelper {
+class KanNavigationBarAnalyticsHelper {
     private struct Events {
         static let tapNavigationItem        = "Tap Navigation Item"
         static let tapNavigationHomeButton  = "Tap NavBar Home Button"

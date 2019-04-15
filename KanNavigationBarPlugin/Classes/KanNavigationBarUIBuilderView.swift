@@ -12,7 +12,7 @@ import ZappNavigationBarPluginsSDK
 import ApplicasterSDK
 import ZappSDK
 
-public class JerusalemNavigationBarUIBuilderView: UIView, ZPNavigationBarUIBuilderProtocol {
+public class KanNavigationBarUIBuilderView: UIView, ZPNavigationBarUIBuilderProtocol {
     
     public struct AnimationKeys {
         static let animationDurationForMakeButtonsVisible = 0.4
@@ -24,11 +24,15 @@ public class JerusalemNavigationBarUIBuilderView: UIView, ZPNavigationBarUIBuild
     public let navigationButtonsWidth:CGFloat    = 38.0
 
     public weak var delegate: ZPNavigationBarViewDelegate?
+    public var modelUrlPath: NSURL?
+
     @IBOutlet weak var mainStackView: UIStackView!
 
     @IBOutlet open weak var specialButton: NavigationButton?
     @IBOutlet open weak var backButton: NavigationButton?
     @IBOutlet open weak var closeButton: NavigationButton?
+
+    @IBOutlet open weak var shareButton: CAButton?
 
     @IBOutlet open weak var homeButton: NavigationButton?
     @IBOutlet open weak var specialButtonsContainer: UIView!
@@ -153,7 +157,34 @@ public class JerusalemNavigationBarUIBuilderView: UIView, ZPNavigationBarUIBuild
             delegate?.navigationBar(self, buttonWasClicked: .rightGroup, senderButton: sender)
         }
     }
-     
+    
+    @IBAction func handleShareButtonTapped(_ sender:CAButton) {
+        guard let modelUrlPath = self.modelUrlPath,
+            let newAtomEntry = APAtomEntry.linkEntry(withURLString: modelUrlPath.absoluteString) else {
+            return
+        }
+        
+        //for debug usage
+        //print("KAN share Link before change: " + newAtomEntry.link)
+        guard var urlComponents = URLComponents(string: newAtomEntry.link) else {
+            return
+        }
+        
+        if let queryItems = urlComponents.queryItems {
+            //For VIMI content we filter catId and for KAN content by itemId
+            if let queryItem = queryItems.filter({$0.name == "itemId" || $0.name == "catId"}).first {
+                urlComponents.queryItems = [queryItem]
+            }
+        }
+        
+        newAtomEntry.link = urlComponents.string
+        
+        //for debug usage
+        //print("KAN share Link after change: " + newUrlString)
+        
+         APSocialSharingManager.sharedInstance().shareWithDefaultText(withModel: newAtomEntry, andSharingType: APSharingViaNativeType)
+    }
+    
     //MARK: Helpers
     
     func buttonInGroupOfButtons(_ button:NavigationButton, inButtonsGroup buttonsGroup:[NavigationButton]?) -> Bool {

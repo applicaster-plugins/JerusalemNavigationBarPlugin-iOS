@@ -1,8 +1,8 @@
 //
-//  GANavigationBarUIBuilderAdapter.swift
+//  KanNavigationBarUIBuilderAdapter.swift
 //  Zapp-App
 //
-//  Created by Anton Kononenko on 01/12/2017.
+//  Created by Miri on 15/04/2019.
 //  Copyright © 2017 Applicaster LTD. All rights reserved.
 //
 
@@ -11,15 +11,16 @@ import ZappNavigationBarPluginsSDK
 import ApplicasterSDK
 import ZappSDK
 
-@objc class JerusalemNavigationBarAdapter: ZPNavigationBarBaseAdapter {
-    let defaultNavigationStyle = "DefaultNavigationBarJerusalem"
+@objc class KanNavigationBarAdapter: ZPNavigationBarBaseAdapter {
+    let defaultNavigationStyle = "DefaultNavigationBarKan"
     let navigationStylePrefix  = "DefaultNavigationBar"
 
     /// Stores curently existing navigation bar xib
     var currentNavigationBarStyle:String?
+    var screenModel:ZLScreenModel?
     
     /// Navigation Bar View instance
-    open var navigationBar:JerusalemNavigationBarUIBuilderView? {
+    open var navigationBar:KanNavigationBarUIBuilderView? {
         didSet {
             self.navigationBar?.delegate = navBarManagerDelegate
             customizeNavigationBar()
@@ -72,10 +73,10 @@ import ZappSDK
                                                                   placementType: isNoScreenModel == true ? .onTop : customizationHelper.placementType())
                 }
             }
-  
-            navigationBar.titleLabel?.isHidden = true
-            navigationBar.logoImageView?.isHidden = true
-            navigationBar.homeButton?.isHidden = true
+            navigationBar.shareButton?.isHidden = true
+//            navigationBar.titleLabel?.isHidden = true
+//            navigationBar.logoImageView?.isHidden = true
+//            navigationBar.homeButton?.isHidden = true
             
             GAAutomationManager.sharedInstance.setAccessibilityIdentifier(view: navigationBar.specialButton, identifier: AccessibilityIdSpecialButton)
             GAAutomationManager.sharedInstance.setAccessibilityIdentifier(view: navigationBar.backButton, identifier: AccessibilityIdSpecialButton)
@@ -90,9 +91,9 @@ import ZappSDK
         guard let navigationBar = navigationBar else {
             return
         }
-        navigationBar.logoImageView?.isHidden = true
-        navigationBar.homeButton?.isHidden = true
-        navigationBar.titleLabel?.isHidden = true
+//        navigationBar.logoImageView?.isHidden = true
+//        navigationBar.homeButton?.isHidden = true
+//        navigationBar.titleLabel?.isHidden = true
 
         let forceShowLogo = customizationHelper?.forceHomeScreenShowLogo?() == true &&
             currentScreenModel?.isHomeScreen == true &&
@@ -107,7 +108,7 @@ import ZappSDK
             navigationBar.homeButton?.isHidden = true
             navigationBar.titleLabel?.isHidden = true
         } else {
-            if let title = currentViewController?.title {
+            if let title = screenModel?.name {
                 let currentTitle = APApplicasterController.sharedInstance().isAppRTL ? title.rtl() : title
                 if currentTitle != navigationBar.titleLabel?.text {
                     navigationBar.titleLabel?.setText(currentTitle,
@@ -124,9 +125,18 @@ import ZappSDK
     }
     
     override func customizeForScreen(model:AnyObject?,
-                                     dataSource:AnyObject?) {
+                                     dataSource:AnyObject?,
+                                     forViewController: UIViewController?) {
         isNoScreenModel = false
         currentDataSourceModel = dataSource
+        navigationBar?.shareButton?.isHidden = false
+
+//        if let webViewController = forViewController as? APTimedWebViewController,
+//            let url = webViewController.urlPath as NSURL? {
+//            navigationBar?.modelUrlPath = url
+//            navigationBar?.shareButton?.isHidden = false
+//        }
+
         forceNavigationBarHiddenRNScreens = false
         if let model = model as? ZLScreenModel {
             if model.isPluginScreen(),
@@ -157,7 +167,7 @@ import ZappSDK
     }
     
     /// List of caching items
-    var cachedNavBarItems:[JerusalemNavigationBarCachedModel] = []
+    var cachedNavBarItems:[KanNavigationBarCachedModel] = []
     
     /// Data source of the screen
     var currentDataSourceModel:Any?
@@ -208,30 +218,32 @@ import ZappSDK
     ///
     /// - Parameter screenModel: Screen Model with information about style for navigation bar
     /// - Returns: NavigationBarUIBuilderView instance if can be created
-    func navigationBarView(for screenModel:ZLScreenModel?) -> JerusalemNavigationBarUIBuilderView? {
-        var retVal:JerusalemNavigationBarUIBuilderView? = navigationBar
+    func navigationBarView(for screenModel:ZLScreenModel?) -> KanNavigationBarUIBuilderView? {
+        self.screenModel = screenModel
+        var retVal:KanNavigationBarUIBuilderView? = navigationBar
         var navigationBarStyle = defaultNavigationStyle
         if let navigationXibKey = customizationHelper?.navigationBarXib()?.capitalized {
             navigationBarStyle = navigationStylePrefix + navigationXibKey
         }
         
         if retVal == nil || navigationBarStyle != currentNavigationBarStyle {
-            retVal = JerusalemNavigationBarUIBuilderView.searchXib(navigationBarStyle,
-                                                          in: Bundle(for: JerusalemNavigationBarUIBuilderView.self)) as? JerusalemNavigationBarUIBuilderView
+            retVal = KanNavigationBarUIBuilderView.searchXib(navigationBarStyle,
+                                                          in: Bundle(for: JerusalemNavigationBarUIBuilderView.self)) as? KanNavigationBarUIBuilderView
             currentNavigationBarStyle = navigationBarStyle
         }
         
         return retVal
     }
+    
 }
 
-extension JerusalemNavigationBarAdapter {
+extension KanNavigationBarAdapter {
     
     /// Retrieve cached navigation bar Model
     ///
     /// - Parameter dataModel: Instance of navigation bar model to retrieve
     /// - Returns: cached navigation bar model if exists
-    func cachedModel(by dataModel: ZLNavigationModel) -> JerusalemNavigationBarCachedModel? {
+    func cachedModel(by dataModel: ZLNavigationModel) -> KanNavigationBarCachedModel? {
         let searchedItem = cachedNavBarItems.first { (cachedModel) -> Bool in
             return cachedModel.model?.identifier == dataModel.identifier
         }
@@ -256,7 +268,7 @@ extension JerusalemNavigationBarAdapter {
     /// Populate buttons for navigation bar
     ///
     /// - Parameter model: GANavigationBarCachedModel instance
-    func populateButtons(model: JerusalemNavigationBarCachedModel?) {
+    func populateButtons(model: KanNavigationBarCachedModel?) {
         if let navigationBar = navigationBar {
             if let model = model {
 
@@ -288,7 +300,7 @@ extension JerusalemNavigationBarAdapter {
 
 // MARK: - ZPNavigationBarManagerProtocol
 
-extension JerusalemNavigationBarAdapter: ZPNavigationBarManagerProtocol {
+extension KanNavigationBarAdapter: ZPNavigationBarManagerProtocol {
     func navigationController(_ navigationController:UINavigationController,
                               transitionStartedWithViewController viewController:UIViewController,
                               animated:Bool) {
@@ -340,6 +352,12 @@ extension JerusalemNavigationBarAdapter: ZPNavigationBarManagerProtocol {
         self.currentViewController = currentViewController
         self.updateNavBarTitle()
         refreshButtons()
+        
+        if let webViewController = currentViewController as? APTimedWebViewController,
+            let url = webViewController.urlPath as NSURL? {
+            navigationBar?.modelUrlPath = url
+            navigationBar?.shareButton?.isHidden = false
+        }
     }
 }
 

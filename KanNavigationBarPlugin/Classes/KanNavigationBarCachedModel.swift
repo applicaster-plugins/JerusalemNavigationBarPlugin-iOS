@@ -1,8 +1,8 @@
 //
-//  GANavigationBarCachedModel.swift
+//  KanNavigationBarCachedModel.swift
 //  Zapp-App
 //
-//  Created by Anton Kononenko on 16/01/2018.
+//  Created by Miri on 15/04/2019.
 //  Copyright © 2018 Applicaster LTD. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 import ZappNavigationBarPluginsSDK
 import ComponentsSDK
 
-class JerusalemNavigationBarCachedModel {
+class KanNavigationBarCachedModel {
     weak private(set) public var model: ZLNavigationModel?
     weak var navBarManagerDelegate:ZPNavigationBarManagerDelegate?
     

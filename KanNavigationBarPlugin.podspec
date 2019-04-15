@@ -1,19 +1,19 @@
 Pod::Spec.new do |s|
-  s.name             = "JerusalemNavigationBarPlugin"
+  s.name             = "KanNavigationBarPlugin"
   s.version          = '0.1.0'
-  s.summary          = "JerusalemNavigationBarPlugin"
+  s.summary          = "KanNavigationBarPlugin"
   s.description      = <<-DESC
-                        Jerusalem navigation bar plugin.
+                        Kan navigation bar plugin.
                        DESC
-  s.homepage         = "https://github.com/applicaster-plugins/JerusalemNavigationBarPlugin-iOS"
+  s.homepage         = "https://github.com/applicaster-plugins/KanNavigationBarPlugin-iOS"
   s.license          = 'CMPS'
   s.author           = { "cmps" => "m.vecselboim@applicaster.com" }
-  s.source           = { :git => "git@github.com:applicaster-plugins/JerusalemNavigationBarPlugin-iOS.git", :tag => s.version.to_s }
+  s.source           = { :git => "git@github.com:applicaster-plugins/KanNavigationBarPlugin-iOS.git", :tag => s.version.to_s }
   s.platform     = :ios, '10.0'
   s.requires_arc = true
 
-  s.public_header_files = 'JerusalemNavigationBarPlugin/**/*.h'
-  s.source_files = 'JerusalemNavigationBarPlugin/**/**/*.{h,m,swift}'
+  s.public_header_files = 'KanNavigationBarPlugin/**/*.h'
+  s.source_files = 'KanNavigationBarPlugin/**/**/*.{h,m,swift}'
 
 
   s.resources = [
