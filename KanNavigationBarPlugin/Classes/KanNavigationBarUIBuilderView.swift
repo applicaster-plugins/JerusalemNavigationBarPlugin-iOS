@@ -69,43 +69,43 @@ public class KanNavigationBarUIBuilderView: UIView, ZPNavigationBarUIBuilderProt
     open var rightMenuButtons : [NavigationButton] = []
         {
         didSet {
-            if let rightButtonsStackView = rightButtonsStackView {
-                func prepareButtonsForUse() {
-                    self.rightButtonDummyView?.isHidden = true
-
-                    if self.rightMenuButtons.count > 0 {
-                        self.rightMenuButtons.enumerated().forEach({ [weak self] (index, navigationButton) in
-                            if let weakSelf = self {
-                                if weakSelf.rightNavButtonsLimit > index {
-                                    navigationButton.addTarget(weakSelf,
-                                                               action: #selector(weakSelf.handleUserPushGroupButtons(_:)),
-                                                               for: .touchUpInside)
-                                    navigationButton.removeConstraints(navigationButton.constraints)
-                                    navigationButton.widthAnchor.constraint(equalToConstant: weakSelf.navigationButtonsWidth).isActive = true
-                                    rightButtonsStackView.addArrangedSubview(navigationButton)
-                                }
-                            }
-                        })
-                        if rightButtonsStackView.subviews.count > 0 {
-                            self.rightButtonsStackView?.isHidden = false
-                        }
-                    } else {
-                        self.rightButtonDummyView?.isHidden = false
-                    }
-                }
-                
-                
-                if oldValue != rightMenuButtons {
-                    if rightButtonsStackView.arrangedSubviews.count > 0 {
-                        rightButtonsStackView.arrangedSubviews.forEach {(subview) in
-                            if let button = subview as? NavigationButton {
-                                button.removeFromSuperview()
-                            }
-                        }
-                    }
-                     prepareButtonsForUse()
-                }
-            }
+//            if let rightButtonsStackView = rightButtonsStackView {
+//                func prepareButtonsForUse() {
+//                    self.rightButtonDummyView?.isHidden = true
+//
+//                    if self.rightMenuButtons.count > 0 {
+//                        self.rightMenuButtons.enumerated().forEach({ [weak self] (index, navigationButton) in
+//                            if let weakSelf = self {
+//                                if weakSelf.rightNavButtonsLimit > index {
+//                                    navigationButton.addTarget(weakSelf,
+//                                                               action: #selector(weakSelf.handleUserPushGroupButtons(_:)),
+//                                                               for: .touchUpInside)
+//                                    navigationButton.removeConstraints(navigationButton.constraints)
+//                                    navigationButton.widthAnchor.constraint(equalToConstant: weakSelf.navigationButtonsWidth).isActive = true
+//                                    rightButtonsStackView.addArrangedSubview(navigationButton)
+//                                }
+//                            }
+//                        })
+//                        if rightButtonsStackView.subviews.count > 0 {
+//                            self.rightButtonsStackView?.isHidden = false
+//                        }
+//                    } else {
+//                        self.rightButtonDummyView?.isHidden = false
+//                    }
+//                }
+//
+//
+//                if oldValue != rightMenuButtons {
+//                    if rightButtonsStackView.arrangedSubviews.count > 0 {
+//                        rightButtonsStackView.arrangedSubviews.forEach {(subview) in
+//                            if let button = subview as? NavigationButton {
+//                                button.removeFromSuperview()
+//                            }
+//                        }
+//                    }
+//                     prepareButtonsForUse()
+//                }
+//            }
         }
     }
     
@@ -153,9 +153,9 @@ public class KanNavigationBarUIBuilderView: UIView, ZPNavigationBarUIBuilderProt
     }
     
     @objc open func handleUserPushGroupButtons(_ sender: NavigationButton) {
-        if self.buttonInGroupOfButtons(sender, inButtonsGroup: self.rightMenuButtons) == true {
-            delegate?.navigationBar(self, buttonWasClicked: .rightGroup, senderButton: sender)
-        }
+//        if self.buttonInGroupOfButtons(sender, inButtonsGroup: self.rightMenuButtons) == true {
+//            delegate?.navigationBar(self, buttonWasClicked: .rightGroup, senderButton: sender)
+//        }
     }
     
     @IBAction func handleShareButtonTapped(_ sender:CAButton) {

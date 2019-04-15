@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="JerusalemNavigationBarUIBuilderView" customModule="JerusalemNavigationBarPlugin">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="KanNavigationBarUIBuilderView" customModule="KanNavigationBarPlugin">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -91,17 +91,17 @@
                             </connections>
                         </button>
                         <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="maf-h9-sby" userLabel="Title/LogoContainer">
-                            <rect key="frame" x="79" y="0.0" width="231" height="44"/>
+                            <rect key="frame" x="78" y="0.0" width="232" height="44"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xG-yr-LFk" userLabel="homeButton" customClass="NavigationButton" customModule="JerusalemNavigationBarPlugin" customModuleProvider="target">
-                                    <rect key="frame" x="163" y="0.0" width="30" height="44"/>
+                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xG-yr-LFk" userLabel="homeButton" customClass="NavigationButton" customModule="KanNavigationBarPlugin" customModuleProvider="target">
+                                    <rect key="frame" x="202" y="0.0" width="30" height="44"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <connections>
                                         <action selector="handleUserHomeButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="g75-hX-1T3"/>
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="center" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUj-fh-5Iz" userLabel="Title Label">
-                                    <rect key="frame" x="0.0" y="0.0" width="158" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="197" height="44"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" id="N4p-g7-TXd"/>
@@ -111,7 +111,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EnE-md-0Ij" userLabel="Logo Image View" customClass="ZPImageView" customModule="ZappPlugins">
-                                    <rect key="frame" x="163" y="0.0" width="30" height="44"/>
+                                    <rect key="frame" x="202" y="0.0" width="30" height="44"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" id="pc0-HA-9L1"/>
@@ -135,8 +135,8 @@
                         </view>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="maf-h9-sby" firstAttribute="leading" secondItem="2aW-4w-EYf" secondAttribute="trailing" constant="1" id="3ox-oP-89M"/>
                         <constraint firstItem="2aW-4w-EYf" firstAttribute="width" secondItem="KNC-sx-81F" secondAttribute="width" id="4BX-Jo-BKK"/>
-                        <constraint firstItem="maf-h9-sby" firstAttribute="leading" secondItem="2aW-4w-EYf" secondAttribute="trailing" constant="2" id="GVd-ox-eAf"/>
                         <constraint firstAttribute="height" constant="44" id="Rsd-P5-C1Y"/>
                     </constraints>
                 </stackView>

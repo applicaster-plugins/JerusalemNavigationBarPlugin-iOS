@@ -1,5 +1,5 @@
 //
-//  KanNavigationBarUIBuilderAdapter.swift
+//  KanNavigationBarAdapter.swift
 //  Zapp-App
 //
 //  Created by Miri on 15/04/2019.
@@ -49,9 +49,9 @@ import ZappSDK
                 
                 if customizationHelper.backgroundType?() == .image,
                     let imageURL = customizationHelper.backgroundImageURL() {
-//                    navigationBar.backgroundColor = GAUICustomizationHelper.color(forKey: RootViewControllerStatusBarBgColor) ?? UIColor.black
-//                    navigationBar.backgroundImageView?.setImage(url: imageURL,
-//                                                                placeholderImage: nil)
+                    navigationBar.backgroundColor = GAUICustomizationHelper.color(forKey: RootViewControllerStatusBarBgColor) ?? UIColor.black
+                    navigationBar.backgroundImageView?.setImage(url: imageURL,
+                                                                placeholderImage: nil)
                 } else {
                     navigationBar.backgroundImageView?.image = nil
                     navigationBar.backgroundColor = customizationHelper.backgroundColor()
@@ -130,12 +130,6 @@ import ZappSDK
         isNoScreenModel = false
         currentDataSourceModel = dataSource
         navigationBar?.shareButton?.isHidden = false
-
-//        if let webViewController = forViewController as? APTimedWebViewController,
-//            let url = webViewController.urlPath as NSURL? {
-//            navigationBar?.modelUrlPath = url
-//            navigationBar?.shareButton?.isHidden = false
-//        }
 
         forceNavigationBarHiddenRNScreens = false
         if let model = model as? ZLScreenModel {
@@ -228,7 +222,7 @@ import ZappSDK
         
         if retVal == nil || navigationBarStyle != currentNavigationBarStyle {
             retVal = KanNavigationBarUIBuilderView.searchXib(navigationBarStyle,
-                                                          in: Bundle(for: JerusalemNavigationBarUIBuilderView.self)) as? KanNavigationBarUIBuilderView
+                                                          in: Bundle(for: KanNavigationBarUIBuilderView.self)) as? KanNavigationBarUIBuilderView
             currentNavigationBarStyle = navigationBarStyle
         }
         
@@ -257,7 +251,7 @@ extension KanNavigationBarAdapter {
     func prepareModelForUse(for dataModel:ZLNavigationModel) {
         
         if let navBarManagerDelegate = navBarManagerDelegate {
-            let newCachedModel = JerusalemNavigationBarCachedModel(model: dataModel,
+            let newCachedModel = KanNavigationBarCachedModel(model: dataModel,
                                                             navBarManagerDelegate: navBarManagerDelegate)
             cachedNavBarItems.append(newCachedModel)
             populateButtons(model: newCachedModel)
