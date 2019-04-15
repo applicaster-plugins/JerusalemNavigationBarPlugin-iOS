@@ -36,17 +36,23 @@ import ZappSDK
             let navigationBar = navigationBar {
 
             if let customizationHelper = customizationHelper {
-                navigationBar.backButton?.prepareButton(for: customizationHelper.backButtonImageURL(),
-                                                        placeholderImage: customizationHelper.backButtonImage())
+                if let backImage = UIImage.init(named: "kan_navbar_back_btn", in: Bundle.main, compatibleWith: nil) {
+                    navigationBar.backButton?.setImage(backImage, for: .normal)
+                }
+                
+                if let backImage = UIImage.init(named: "kan_share_btn", in: Bundle.main, compatibleWith: nil) {
+                    navigationBar.shareButton?.setImage(backImage, for: .normal)
+                }
+                
+                if let logoImage = UIImage.init(named: "kan_navbar_logo", in: Bundle.main, compatibleWith: nil) {
+                    navigationBar.logoImageView?.image = logoImage
+                }
+            
                 navigationBar.specialButton?.prepareButton(for: customizationHelper.specialButtonImageURL(),
                                                         placeholderImage: customizationHelper.specialButtonImage())
                 navigationBar.closeButton?.prepareButton(for: customizationHelper.closeButtonImageURL(),
                                                       placeholderImage: customizationHelper.closeButtonImage())
-                if let imageURL = customizationHelper.logoImageURL() {
-                    navigationBar.logoImageView?.setImage(url: imageURL,
-                                                          placeholderImage: nil)
-                }
-                
+
                 if customizationHelper.backgroundType?() == .image,
                     let imageURL = customizationHelper.backgroundImageURL() {
                     navigationBar.backgroundColor = GAUICustomizationHelper.color(forKey: RootViewControllerStatusBarBgColor) ?? UIColor.black
@@ -74,10 +80,7 @@ import ZappSDK
                 }
             }
             navigationBar.shareButton?.isHidden = true
-//            navigationBar.titleLabel?.isHidden = true
-//            navigationBar.logoImageView?.isHidden = true
-//            navigationBar.homeButton?.isHidden = true
-            
+
             GAAutomationManager.sharedInstance.setAccessibilityIdentifier(view: navigationBar.specialButton, identifier: AccessibilityIdSpecialButton)
             GAAutomationManager.sharedInstance.setAccessibilityIdentifier(view: navigationBar.backButton, identifier: AccessibilityIdSpecialButton)
         }
@@ -91,9 +94,6 @@ import ZappSDK
         guard let navigationBar = navigationBar else {
             return
         }
-//        navigationBar.logoImageView?.isHidden = true
-//        navigationBar.homeButton?.isHidden = true
-//        navigationBar.titleLabel?.isHidden = true
 
         let forceShowLogo = customizationHelper?.forceHomeScreenShowLogo?() == true &&
             currentScreenModel?.isHomeScreen == true &&
@@ -125,8 +125,7 @@ import ZappSDK
     }
     
     override func customizeForScreen(model:AnyObject?,
-                                     dataSource:AnyObject?,
-                                     forViewController: UIViewController?) {
+                                     dataSource:AnyObject?) {
         isNoScreenModel = false
         currentDataSourceModel = dataSource
         navigationBar?.shareButton?.isHidden = false
