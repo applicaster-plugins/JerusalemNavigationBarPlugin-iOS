@@ -39,12 +39,21 @@ import ZappSDK
                 if let backImage = UIImage.init(named: "kan_navbar_back_btn", in: Bundle.main, compatibleWith: nil) {
                     navigationBar.backButton?.setImage(backImage, for: .normal)
                 }
+                else if let backImage = UIImage.init(named: "kan_navbar_back_btn", in: Bundle(for: self.classForCoder), compatibleWith: nil) {
+                    navigationBar.backButton?.setImage(backImage, for: .normal)
+                }
                 
-                if let backImage = UIImage.init(named: "kan_share_btn", in: Bundle.main, compatibleWith: nil) {
-                    navigationBar.shareButton?.setImage(backImage, for: .normal)
+                if let shareButton = UIImage.init(named: "kan_share_btn", in: Bundle.main, compatibleWith: nil) {
+                    navigationBar.shareButton?.setImage(shareButton, for: .normal)
+                }
+                else if let shareButton = UIImage.init(named: "kan_share_btn", in: Bundle(for: self.classForCoder), compatibleWith: nil) {
+                    navigationBar.shareButton?.setImage(shareButton, for: .normal)
                 }
                 
                 if let logoImage = UIImage.init(named: "kan_navbar_logo", in: Bundle.main, compatibleWith: nil) {
+                    navigationBar.logoImageView?.image = logoImage
+                }
+                else if let logoImage = UIImage.init(named: "kan_navbar_logo", in: Bundle(for: self.classForCoder), compatibleWith: nil) {
                     navigationBar.logoImageView?.image = logoImage
                 }
             

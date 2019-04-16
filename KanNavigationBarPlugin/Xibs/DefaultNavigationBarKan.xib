@@ -81,10 +81,11 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2aW-4w-EYf" userLabel="Share Button" customClass="CAButton">
-                            <rect key="frame" x="39" y="0.0" width="38" height="44"/>
+                            <rect key="frame" x="36" y="0.0" width="44" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="38" id="jTT-Xd-zat"/>
                             </constraints>
+                            <state key="normal" image="kan_share_btn.png"/>
                             <connections>
                                 <action selector="handleShareButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="Jgp-GW-4Xg"/>
                             </connections>
@@ -109,7 +110,7 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EnE-md-0Ij" userLabel="Logo Image View" customClass="ZPImageView" customModule="ZappPlugins">
+                                <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kan_navbar_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="EnE-md-0Ij" userLabel="Logo Image View" customClass="ZPImageView" customModule="ZappPlugins">
                                     <rect key="frame" x="202" y="0.0" width="30" height="44"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
@@ -175,4 +176,8 @@
             <point key="canvasLocation" x="301.875" y="150"/>
         </view>
     </objects>
+    <resources>
+        <image name="kan_navbar_logo.png" width="60" height="44"/>
+        <image name="kan_share_btn.png" width="44" height="44"/>
+    </resources>
 </document>
