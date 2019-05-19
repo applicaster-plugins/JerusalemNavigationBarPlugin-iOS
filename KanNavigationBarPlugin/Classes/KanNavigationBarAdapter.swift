@@ -166,9 +166,7 @@ import ZappSDK
                 forceNavBarHidden == true {
                 forceNavigationBarHiddenRNScreens = true
             }
-            if currentScreenModel != model {
-                currentScreenModel = model
-            }
+            currentScreenModel = model
         } else {
             isNoScreenModel = true
             currentScreenModel = ZLComponentsManager.homeScreenDataSource()
