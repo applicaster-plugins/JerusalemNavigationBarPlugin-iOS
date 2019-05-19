@@ -117,7 +117,21 @@ import ZappSDK
             navigationBar.homeButton?.isHidden = true
             navigationBar.titleLabel?.isHidden = true
         } else {
-            if let title = screenModel?.name {
+            if let currentViewController = currentViewController as? GAWebViewController {
+                if let title = currentViewController.title {
+                    let currentTitle = APApplicasterController.sharedInstance().isAppRTL ? title.rtl() : title
+                    if currentTitle != navigationBar.titleLabel?.text {
+                        navigationBar.titleLabel?.setText(currentTitle,
+                                                          animationOptions: .transitionCrossDissolve,
+                                                          completion: nil)
+                    }
+                    navigationBar.titleLabel?.isHidden = false
+                }
+                else {
+                    navigationBar.titleLabel?.isHidden = true
+                }
+            }
+            else if let title = screenModel?.name {
                 let currentTitle = APApplicasterController.sharedInstance().isAppRTL ? title.rtl() : title
                 if currentTitle != navigationBar.titleLabel?.text {
                     navigationBar.titleLabel?.setText(currentTitle,
@@ -125,6 +139,9 @@ import ZappSDK
                                                        completion: nil)
                 }
                 navigationBar.titleLabel?.isHidden = false
+            }
+            else {
+                navigationBar.titleLabel?.isHidden = true
             }
             if customizationHelper?.logoImageURL() != nil {
                 navigationBar.logoImageView?.isHidden = false
@@ -149,8 +166,9 @@ import ZappSDK
                 forceNavBarHidden == true {
                 forceNavigationBarHiddenRNScreens = true
             }
-
-            currentScreenModel = model
+            if currentScreenModel != model {
+                currentScreenModel = model
+            }
         } else {
             isNoScreenModel = true
             currentScreenModel = ZLComponentsManager.homeScreenDataSource()
