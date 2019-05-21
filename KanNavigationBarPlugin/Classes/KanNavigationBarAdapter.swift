@@ -210,8 +210,9 @@ import ZappSDK
     /// Screen Model from currently presented Nav Bar
     var currentScreenModel:ZLScreenModel? {
         didSet {
-            if let currentScreenModel = currentScreenModel {
-                customizationHelper?.custsomizationModel = currentScreenModel
+            if let currentScreenModel = currentScreenModel,
+                let customizationHelper = customizationHelper {
+                customizationHelper.customizationModel = currentScreenModel
                 
                 navigationBar = navigationBarView(for: currentScreenModel)
 
