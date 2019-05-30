@@ -140,7 +140,7 @@ public class KanNavigationBarUIBuilderView: UIView, ZPNavigationBarUIBuilderProt
         }
         
         newAtomEntry.link = urlComponents.string
-        
+        newAtomEntry.title = " "
         //for debug usage
         //print("KAN share Link after change: " + newUrlString)
         
