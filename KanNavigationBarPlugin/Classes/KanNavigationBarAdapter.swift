@@ -80,7 +80,7 @@ import ZappSDK
                 navigationBar.homeButton?.setImage(customizationHelper.homeButtonImage(),
                                                    for:.normal)
                 
-                if forceNavigationBarHiddenRNScreens == true {
+                if forceNavigationBarHiddenScreens == true {
                     rootContainerDelegate?.placeNavBarToContainer(navigationBar: navBarView,
                                                                   placementType: .hidden)
                 } else {
@@ -156,7 +156,7 @@ import ZappSDK
         currentDataSourceModel = dataSource
         navigationBar?.shareButton?.isHidden = false
 
-        forceNavigationBarHiddenRNScreens = false
+        forceNavigationBarHiddenScreens = false
         if let model = model as? ZLScreenModel {
             if model.isPluginScreen(),
                 let pluginIdentifier = model.typeInString(),
@@ -164,7 +164,7 @@ import ZappSDK
                 pluginModel.isReactNativePlugin,
                 let forceNavBarHidden = model.style?.object["force_nav_bar_hidden"] as? Bool,
                 forceNavBarHidden == true {
-                forceNavigationBarHiddenRNScreens = true
+                forceNavigationBarHiddenScreens = true
             }
             currentScreenModel = model
         } else {
