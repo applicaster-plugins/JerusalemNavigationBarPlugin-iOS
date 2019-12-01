@@ -57,11 +57,16 @@ import ZappSDK
                     navigationBar.logoImageView?.image = logoImage
                 }
             
-                navigationBar.specialButton?.prepareButton(for: customizationHelper.specialButtonImageURL(),
-                                                        placeholderImage: customizationHelper.specialButtonImage())
-                navigationBar.closeButton?.prepareButton(for: customizationHelper.closeButtonImageURL(),
-                                                      placeholderImage: customizationHelper.closeButtonImage())
-
+                if let specialButtonImageURL = customizationHelper.specialButtonImageURL() {
+                    navigationBar.specialButton?.prepareButton(for: specialButtonImageURL,
+                                                               placeholderImage: customizationHelper.specialButtonImage())
+                }
+                
+                if let closeButtonImageURL = customizationHelper.closeButtonImageURL() {
+                    navigationBar.closeButton?.prepareButton(for: closeButtonImageURL,
+                                                             placeholderImage: customizationHelper.closeButtonImage())
+                }
+                
                 if customizationHelper.backgroundType?() == .image,
                     let imageURL = customizationHelper.backgroundImageURL() {
                     navigationBar.backgroundColor = GAUICustomizationHelper.color(forKey: RootViewControllerStatusBarBgColor) ?? UIColor.black
