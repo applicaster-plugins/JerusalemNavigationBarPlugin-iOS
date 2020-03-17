@@ -8,7 +8,7 @@
 
 import Foundation
 import ZappNavigationBarPluginsSDK
-import ComponentsSDK
+import ZappSDK
 
 class KanNavigationBarCachedModel {
     weak private(set) public var model: ZLNavigationModel?

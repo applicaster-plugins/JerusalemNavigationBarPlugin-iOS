@@ -1,0 +1,323 @@
+
+{
+  "api": {
+    "class_name": "KanNavigationBarAdapter",
+    "modules": [
+      "KanNavigationBarPlugin"
+    ],
+    "require_startup_execution": false
+  },
+  "author_email": "m.vecselboim@applicaster.com",
+  "author_name": "Miri Vecselboim",
+  "custom_configuration_fields": [
+    {
+      "key": "ios_assets_bundle",
+      "type": "uploader",
+      "tooltip_text": "Upload a Zip file following the folder structure and hierarchy guideline of the platform. The Zip file will be extracted during the build time and will add the assets to the resources of the bundle/package. This field does not affect runtime and a change will require a new build of the app version."
+    }
+  ],
+  "dependency_repository_url": [
+    "git@github.com:applicaster-plugins/KanNavigationBarPlugin-iOS.git"
+  ],
+  "deprecated_since_zapp_sdk": "",
+  "description": "Kan Navigation Bar",
+  "identifier": "KanNavigationBar",
+  "manifest_version": "2.1.0",
+  "min_zapp_sdk": "14.0.0-Dev",
+  "name": "Kan Navigation Bar",
+  "ui_builder_support": true,
+  "dependency_name": "KanNavigationBarPlugin",
+  "dependency_version": "2.1.0",
+  "whitelisted_account_ids": [
+    "5c3b12762756be0008779106"
+  ],
+  "platform": "ios",
+  "preview": {
+    "general": [
+      {
+        "menu": true,
+        "url": "https://assets-secure.applicaster.com/zapp/default_ui_components/screenshots/navigation_bar/nav_bar_menu_center_new.png"
+      },
+      {
+        "menu": true,
+        "url": "https://assets-secure.applicaster.com/zapp/default_ui_components/screenshots/navigation_bar/nav_bar_back_logo_center_new.png"
+      },
+      {
+        "menu": true,
+        "url": "https://assets-secure.applicaster.com/zapp/default_ui_components/screenshots/navigation_bar/nav_bar_x_logo_center_new.png"
+      },
+      {
+        "menu": true,
+        "url": "https://assets-secure.applicaster.com/zapp/default_ui_components/screenshots/navigation_bar/nav_bar_menu_left_new.png"
+      },
+      {
+        "menu": true,
+        "url": "https://assets-secure.applicaster.com/zapp/default_ui_components/screenshots/navigation_bar/nav_bar_back_logo_left_new.png"
+      },
+      {
+        "menu": true,
+        "url": "https://assets-secure.applicaster.com/zapp/default_ui_components/screenshots/navigation_bar/nav_bar_x_logo_left_new.png"
+      },
+      {
+        "url": "https://assets-secure.applicaster.com/zapp/default_ui_components/screenshots/navigation_bar/nav_bar_no_menu_left_new.png"
+      },
+      {
+        "url": "https://assets-secure.applicaster.com/zapp/default_ui_components/screenshots/navigation_bar/nav_bar_no_menu_center_new.png"
+      }
+    ]
+  },
+  "react_native": false,
+  "styles": {
+    "fields": [
+      {
+        "key": "state",
+        "label": "Bar State",
+        "placeholder": "Select Bar State",
+        "label_tooltip": "On Top state does not support opacity value other than 100%",
+        "initial_value": "on_top",
+        "options": [
+          {
+            "text": "On Top",
+            "value": "on_top"
+          },
+          {
+            "text": "Overlay",
+            "value": "overlay"
+          },
+          {
+            "text": "Hidden",
+            "value": "hidden"
+          }
+        ],
+        "rules": "none",
+        "type": "select"
+      },
+      {
+        "conditional_fields": [
+          {
+            "condition_value": [
+              "on_top",
+              "overlay"
+            ],
+            "key": "styles/state"
+          }
+        ],
+        "key": "background_type",
+        "label": "Background Type",
+        "placeholder": "Select Background Type",
+        "initial_value": "Color",
+        "options": [
+          "Color",
+          "Image"
+        ],
+        "rules": "none",
+        "type": "select"
+      },
+      {
+        "conditional_fields": [
+          {
+            "condition_value": "Color",
+            "key": "styles/background_type"
+          },
+          {
+            "condition_value": [
+              "on_top",
+              "overlay"
+            ],
+            "key": "styles/state"
+          }
+        ],
+        "rules": "all_conditions",
+        "key": "background_color",
+        "label": "Color",
+        "initial_value": "#363C4A",
+        "type": "color_picker"
+      },
+      {
+        "conditional_fields": [
+          {
+            "condition_value": "Image",
+            "key": "styles/background_type"
+          },
+          {
+            "condition_value": [
+              "on_top",
+              "overlay"
+            ],
+            "key": "styles/state"
+          }
+        ],
+        "rules": "all_conditions",
+        "key": "background_image",
+        "label": "Image",
+        "placeholder": "W 3px x H 132px",
+        "label_tooltip": "Upload an image for a vertical gradient style",
+        "type": "uploader"
+      },
+      {
+        "conditional_fields": [
+          {
+            "condition_value": [
+              "on_top",
+              "overlay"
+            ],
+            "key": "styles/state"
+          }
+        ],
+        "key": "presentation_style",
+        "initial_value": "title",
+        "label": "Logo and Title Display",
+        "placeholder": "Select Logo and Title Display",
+        "options": [
+          {
+            "text": "Display",
+            "value": "title"
+          },
+          {
+            "text": "None",
+            "value": "hidden"
+          }
+        ],
+        "type": "select"
+      },
+      {
+        "conditional_fields": [
+          {
+            "condition_value": "title",
+            "key": "styles/presentation_style"
+          },
+          {
+            "condition_value": [
+              "on_top",
+              "overlay"
+            ],
+            "key": "styles/state"
+          }
+        ],
+        "key": "homescreen_show_logo",
+        "label": "Show Logo on Home Screen",
+        "rules": "all_conditions",
+        "type": "switch"
+      },
+      {
+        "conditional_fields": [
+          {
+            "condition_value": "title",
+            "key": "styles/presentation_style"
+          },
+          {
+            "condition_value": [
+              "on_top",
+              "overlay"
+            ],
+            "key": "styles/state"
+          }
+        ],
+        "rules": "all_conditions",
+        "key": "ios_font_family",
+        "initial_value": "HelveticaNeue-Medium",
+        "label": "iOS Font",
+        "type": "ios_font_selector"
+      },
+      {
+        "conditional_fields": [
+          {
+            "condition_value": "title",
+            "key": "styles/presentation_style"
+          },
+          {
+            "condition_value": [
+              "on_top",
+              "overlay"
+            ],
+            "key": "styles/state"
+          }
+        ],
+        "rules": "all_conditions",
+        "key": "android_font_family",
+        "label": "Android Font",
+        "initial_value": "Roboto-Medium",
+        "type": "android_font_selector"
+      },
+      {
+        "conditional_fields": [
+          {
+            "condition_value": "title",
+            "key": "styles/presentation_style"
+          },
+          {
+            "condition_value": [
+              "on_top",
+              "overlay"
+            ],
+            "key": "styles/state"
+          }
+        ],
+        "rules": "all_conditions",
+        "key": "title_color",
+        "label": "Title Color",
+        "initial_value": "#FFFFFF",
+        "type": "color_picker"
+      },
+      {
+        "conditional_fields": [
+          {
+            "condition_value": "title",
+            "key": "styles/presentation_style"
+          },
+          {
+            "condition_value": [
+              "on_top",
+              "overlay"
+            ],
+            "key": "styles/state"
+          }
+        ],
+        "rules": "all_conditions",
+        "key": "title_size",
+        "label": "Smartphone Font Size",
+        "initial_value": "16",
+        "placeholder": "Enter Font Size",
+        "type": "number_input"
+      },
+      {
+        "conditional_fields": [
+          {
+            "condition_value": "title",
+            "key": "styles/presentation_style"
+          },
+          {
+            "condition_value": [
+              "on_top",
+              "overlay"
+            ],
+            "key": "styles/state"
+          }
+        ],
+        "rules": "all_conditions",
+        "key": "title_size_tablet",
+        "label": "Tablet Font Size",
+        "initial_value": "18",
+        "placeholder": "Enter Font Size",
+        "type": "number_input"
+      }
+    ]
+  },
+  "supported_nav_items": [
+    "nav_chromecast",
+    "nav_live",
+    "nav_screen",
+    "nav_url"
+  ],
+  "max_nav_items": 3,
+  "thumbnail": {
+    "height": 36,
+    "url": "https://assets-secure.applicaster.com/zapp/default_ui_components/screenshots/navigation_bar/navigation_bar_thumbnail.png",
+    "width": 160
+  },
+  "type": "nav_bar",
+  "unsupported_since_zapp_sdk": "",
+  "targets": [
+    "mobile"
+  ]
+}
